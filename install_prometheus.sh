@@ -50,7 +50,7 @@ tar -xzf ${filename}
 echo "Prometheus downloaded and extracted successfully."
 
 EXTRACT_DIR=$(tar -tzf $filename | head -1 | cut -f1 -d"/")
-
+sudo cp ./prometheus.service /etc/systemd/system/
 cd ${EXTRACT_DIR}
 echo "Changed directory to $PWD"
 echo "Moving 'prometheus' to /usr/local/bin/"
@@ -66,7 +66,7 @@ sudo mkdir -p /etc/prometheus
 echo "copying 'consoles', 'console_libraries' and 'prometheus.yml' to /etc/prometheus/"
 sudo cp -r consoles console_libraries prometheus.yml /etc/prometheus/
 
-sudo cp ./prometheus.service /etc/systemd/system/
+
 
 sudo systemctl daemon-reload
 sudo systemctl start prometheus
