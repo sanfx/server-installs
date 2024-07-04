@@ -61,6 +61,8 @@ sudo mv -vf promtool /usr/local/bin/
 sudo chmod +x /usr/local/bin/prometheus
 sudo chmod +x /usr/local/bin/promtool
 
+IP=$(hostname -I | awk '{print $1}' | sed 's/[[:space:]]*$//')
+sed -i "s/localhost:9090/$IP:9090/g" ./prometheus.yml
 
 sudo mkdir -p /etc/prometheus
 echo "copying 'consoles', 'console_libraries' and 'prometheus.yml' to /etc/prometheus/"
